@@ -10,7 +10,7 @@ import MobileMenu from "./MobileMenu";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <header className="py-5 md:py-10">
+    <header className="py-5 md:py-10 fixed top-0 left-0 right-0 backdrop-blur-2xl z-100">
       <div className="container">
         <div className="flex justify-between items-center">
           <Link href="/" className="max-w-20 max-h-5 md:max-w-40 md:max-h-7.5">

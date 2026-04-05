@@ -2,7 +2,7 @@ import { ArrowSvg } from "../_icon";
 
 const InputSub = () => {
   return (
-    <div className=" flex items-center justify-center">
+    <div className="w-full flex items-center justify-center">
       <div className="relative w-full xl:max-w-102.5 xl:w-102.5">
         <input
           type="email"
