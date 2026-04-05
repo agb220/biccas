@@ -13,7 +13,7 @@ const Header = () => {
     <header className="py-5 md:py-10">
       <div className="container">
         <div className="flex justify-between items-center">
-          <a href="/" className="max-w-20 max-h-5 md:max-w-40 md:max-h-7.5">
+          <Link href="/" className="max-w-20 max-h-5 md:max-w-40 md:max-h-7.5">
             <Image
               src={"/images/logo.svg"}
               alt={"Biccas logo"}
@@ -21,7 +21,7 @@ const Header = () => {
               height={40}
               className="object-center"
             />
-          </a>
+          </Link>
           <div className="gap-32 items-center justify-between hidden lg:flex">
             <nav>
               <ul className="flex gap-10 items-center justify-between">
