@@ -1,3 +1,11 @@
+import {
+  DescriptSvg,
+  GrammarlySvg,
+  IntercomSvg,
+  NotionSvg,
+  UnsplashSvg,
+} from "../_icon";
+
 export const menulist = [
   { item: "Home", href: "/" },
   {
@@ -7,6 +15,14 @@ export const menulist = [
   { item: "FAQ", href: "/" },
   { item: "Blog", href: "/" },
   { item: "About Us", href: "/" },
+];
+
+export const clients = [
+  { icon: <UnsplashSvg />, label: "Unsplash" },
+  { icon: <NotionSvg />, label: "Notion" },
+  { icon: <IntercomSvg />, label: "INTERCOM" },
+  { icon: <DescriptSvg />, label: "Descript" },
+  { icon: <GrammarlySvg />, label: "Grammarly" },
 ];
 
 export const products = [
