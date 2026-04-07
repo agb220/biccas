@@ -2,11 +2,11 @@ import { clients } from "./_constants/constants";
 
 const ColabsSection = () => {
   return (
-    <section className="container px-10 pt-8 md:pt-12.5 pb-20 md:pb-32.5">
+    <section className="container xl:px-10 pt-8 md:pt-12.5 pb-20 md:pb-32.5">
       <h2 className="text-[26px] md:text-[32px] xl:text-[40px] font-bold text-center  mb-10 md:mb-14 xl:mb-18.5 text-[#191A15]">
         More than 25,000 teams use Collabs
       </h2>
-      <ul className="flex items-center justify-between gap-12.5 overflow-scroll">
+      <ul className="flex items-center justify-between gap-10 overflow-x-auto no-scrollbar -mx-2 md:-mx-9 xl:mx-0">
         {clients.map((client, index) => (
           <Client {...client} key={index} />
         ))}
