@@ -6,7 +6,7 @@ import { CheckSvg, DataBaseSvg, MessageSvg } from "./_icon";
 
 const HeroSection = () => {
   return (
-    <section className="bg-linear-to-br from-[#f0f9f6] via-white to-[#e8f6f1] xl:pt-52.5 xl:pb-32.5 pt-20 md:pt-30 pb-20 overflow-hidden">
+    <section className="xl:pt-52.5 xl:pb-32.5 pt-20 md:pt-30 pb-20 overflow-hidden">
       <div className="container flex items-center flex-col xl:flex-row gap-8.75 justify-between">
         <div className="flex flex-col xl:max-w-1/2">
           <h1 className="text-[38px] md:text-[56px] xl:text-[80px] font-bold mb-7.5">
