@@ -6,7 +6,7 @@ const SupportSection = () => {
   return (
     <section className="bg-[#F9F8FE] py-15">
       <div className="container flex flex-col lg:flex-row justify-between gap-14 xl:gap-6.75">
-        <div className="flex flex-col justify-between h-full gap-10 xl:gap-18 xl:w-[60%]">
+        <div className="flex flex-col justify-between h-full gap-10 xl:gap-18">
           <div className="flex flex-col gap-7.5">
             <h2 className="text-[28px] md:text-[38px] xl:text-[50px] font-semibold">
               How we support our pratner all over the world
@@ -17,7 +17,7 @@ const SupportSection = () => {
               software, DBMS software, management software
             </p>
           </div>
-          <ul className="flex gap-20">
+          <ul className="flex gap-20 max-w-127.25">
             {raiting.map((item, index) => (
               <SupportRaiting
                 raiting={item.raitin}
