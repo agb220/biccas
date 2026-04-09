@@ -25,6 +25,29 @@ export const clients = [
   { icon: <GrammarlySvg />, label: "Grammarly" },
 ];
 
+export const raiting = [
+  { raitin: "4.9", label: "Databricks" },
+  { raitin: "4.4", label: "Chainalysis" },
+];
+
+export const supportItems = [
+  {
+    title: "Publishing",
+    desc: "Plan, collaborate, and publishing your contetn that drivees meaningful engagement and growth for your barnd",
+    icon: "/images/support/activity.svg",
+  },
+  {
+    title: "Analytics",
+    desc: "Analyze your performance and create goegeous report",
+    icon: "/images/support/pie-chart.svg",
+  },
+  {
+    title: "Engagement",
+    desc: "Quiuckly navigate you anda engage with your adience",
+    icon: "/images/support/command.svg",
+  },
+];
+
 export const products = [
   {
     id: "1",
