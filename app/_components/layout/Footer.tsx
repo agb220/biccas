@@ -27,7 +27,7 @@ const Footer = () => {
               <InputSub />
             </div>
           </div>
-          <div className="text-[18px] flex justify-between gap-20 xl:gap-16 flex-wrap">
+          <div className="text-[18px] flex justify-between gap-y-10 gap-x-18 xl:gap-16 flex-wrap">
             <div className="flex flex-col gap-7.5">
               <span className="text-white">Support</span>
               <div className="text-[#A6A6A6] flex flex-col gap-5">
