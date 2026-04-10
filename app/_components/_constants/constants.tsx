@@ -66,6 +66,14 @@ export const features = [
   },
 ];
 
+export const benefits = [
+  { id: "1", item: "Free Consulting With Experet Saving Money" },
+  { id: "2", item: "Online Banking" },
+  { id: "3", item: "Investment Report Every Month" },
+  { id: "4", item: "Saving Money For The Future" },
+  { id: "5", item: "Online Transection" },
+];
+
 export const products = [
   {
     id: "1",

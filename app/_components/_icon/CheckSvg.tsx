@@ -8,7 +8,11 @@ const CheckSvg = (props: SVGProps<SVGSVGElement>) => (
     fill="none"
     {...props}
   >
-    <path stroke="#fff" strokeWidth={2} d="m.715 4.433 4.174 4.266 7.826-8" />
+    <path
+      stroke="currentColor"
+      strokeWidth={2}
+      d="m.715 4.433 4.174 4.266 7.826-8"
+    />
   </svg>
 );
 export default CheckSvg;
