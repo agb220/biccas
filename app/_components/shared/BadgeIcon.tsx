@@ -6,7 +6,13 @@ interface BadgeIconProps {
 }
 
 const BadgeIcon = ({ icon, className }: BadgeIconProps) => {
-  return <div className={`rounded-[10px] p-4 w-fit ${className}`}>{icon}</div>;
+  return (
+    <div
+      className={`flex items-center justify-between rounded-[10px] p-4 w-fit text-white ${className}`}
+    >
+      {icon}
+    </div>
+  );
 };
 
 export default BadgeIcon;

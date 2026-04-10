@@ -4,23 +4,27 @@ import { features } from "./_constants/constants";
 
 const FeaturesSection = () => {
   return (
-    <section className="container py-32.5">
-      <div className="flex justify-between gap-6 lg:gap-2 items-center flex-col lg:flex-row mb-18.5">
-        <h2 className="text-[28px] md:text-[38px] xl:text-[50px] font-semibold lg:max-w-82.75">
-          Our Features you cab get
-        </h2>
-        <p className="font-medium text-[16px] text-[#A6A6A6] lg:max-w-115.25">
-          We offer a variety of interesting features that you can help increase
-          yor productivity at work and manage your projrct esaly
-        </p>
-        <Button className="rounded-[70px] hidden md:block">Get Started</Button>
-      </div>
-      <div className="overflow-x-auto mb-12 md:mb-0">
-        <ul className="flex gap-5 md:gap-11 justify-between items-center">
-          {features.map((feature, index) => (
-            <FeatureCard {...feature} key={index} />
-          ))}
-        </ul>
+    <section className="pt-32.5 pb-12.5">
+      <div className="container">
+        <div className="flex justify-between gap-6 lg:gap-2 items-center flex-col lg:flex-row mb-18.5">
+          <h2 className="text-[28px] md:text-[38px] xl:text-[50px] font-semibold lg:max-w-82.75">
+            Our Features you cab get
+          </h2>
+          <p className="font-medium text-[16px] text-[#A6A6A6] lg:max-w-115.25">
+            We offer a variety of interesting features that you can help
+            increase yor productivity at work and manage your projrct esaly
+          </p>
+          <Button className="rounded-[70px] hidden md:block">
+            Get Started
+          </Button>
+        </div>
+        <div className="overflow-x-auto mb-12 md:mb-0">
+          <ul className="flex gap-5 md:gap-11 justify-between items-center">
+            {features.map((feature, index) => (
+              <FeatureCard {...feature} key={index} />
+            ))}
+          </ul>
+        </div>
       </div>
 
       <Button className="rounded-[70px]  md:hidden w-full">Get Started</Button>

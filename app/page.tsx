@@ -3,6 +3,7 @@ import HeroSection from "./_components/HeroSection";
 import ColabsSection from "./_components/ColabsSection";
 import SupportSection from "./_components/SupportSection";
 import FeaturesSection from "./_components/FeaturesSection";
+import BenifitsSection from "./_components/BenifitsSection";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       </div>
       <SupportSection />
       <FeaturesSection />
+      <BenifitsSection />
     </main>
   );
 }
