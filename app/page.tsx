@@ -2,6 +2,7 @@ import Image from "next/image";
 import HeroSection from "./_components/HeroSection";
 import ColabsSection from "./_components/ColabsSection";
 import SupportSection from "./_components/SupportSection";
+import FeaturesSection from "./_components/FeaturesSection";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
         <ColabsSection />
       </div>
       <SupportSection />
+      <FeaturesSection />
     </main>
   );
 }
