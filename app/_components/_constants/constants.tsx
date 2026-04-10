@@ -48,6 +48,24 @@ export const supportItems = [
   },
 ];
 
+export const features = [
+  {
+    imgSrc: "/images/feaures/colab.png",
+    title: "Collboration Teams",
+    desc: "Here you can handle projects together with team virtually",
+  },
+  {
+    imgSrc: "/images/feaures/storage.png",
+    title: "Cloud Storage",
+    desc: "No nedd to worry about storage because we provide storage up to 2 TB",
+  },
+  {
+    imgSrc: "/images/feaures/analitics.png",
+    title: "Daily Analytics",
+    desc: "We always provide useful informatin to make it easier for you every day",
+  },
+];
+
 export const products = [
   {
     id: "1",

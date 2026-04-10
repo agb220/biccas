@@ -17,7 +17,7 @@ const SupportSection = () => {
               software, DBMS software, management software
             </p>
           </div>
-          <ul className="flex gap-20 max-w-127.25">
+          <ul className="flex gap-20 max-w-127.25 flex-wrap md:flex-nowrap">
             {raiting.map((item, index) => (
               <SupportRaiting
                 raiting={item.raitin}
