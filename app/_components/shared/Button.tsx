@@ -32,7 +32,7 @@ const ButtonInner = <T extends React.ElementType = "button">(
 
   const buttonStyles = {
     light:
-      "text-[16px] text-[#F8F8FA] rounded-[10px] border-2 border-transparent bg-[#54BD95] hover:text-[#54BD95] hover:bg-transparent hover:border-[#54BD95] py-[10px] px-[10px]",
+      "text-[16px] text-[#F8F8FA] rounded-[10px] border-2 border-transparent bg-[#54BD95] hover:text-[#54BD95] hover:bg-transparent hover:border-[#54BD95] py-[10px] px-[10px] shadow-md",
     outline:
       "text-[16px] hover:text-[#F8F8FA] rounded-[20px] shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] hover:bg-[#54BD95] text-[#54BD95] py-[11px] px-[10px]",
     icon: "p-1 rounded-lg border-2 border-white/75 hover:border-white text-white/75 hover:text-white focus:shadow-[0px_0px_0px_2px_#223f47]",

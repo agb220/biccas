@@ -74,110 +74,53 @@ export const benefits = [
   { id: "5", item: "Online Transection" },
 ];
 
-export const products = [
+export const plans = [
   {
-    id: "1",
-    imageSrc: "/images/products/plant1.png",
-    title: "Calathea plant",
-    subTitle: "For Small Decs Ai Plat",
-    category: "Trendy House Plant",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    price: "100",
+    id: "free",
+    title: "Free",
+    description: "Have a go and test your superpowers",
+    monthlyPrice: 0,
+    yearlyPrice: 0,
+    features: [
+      "2 Users",
+      "2 Files",
+      "Public Share & Comments",
+      "Chat Support",
+      "New income apps",
+    ],
+    buttonText: "Signup for free",
+    isPopular: false,
   },
   {
-    id: "2",
-    imageSrc: "/images/products/plant2.png",
-    title: "Calathea plant",
-    subTitle: "For Fresh Decs Ai Plat",
-    category: "Trendy House Plant",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    price: "230",
+    id: "pro",
+    title: "Pro",
+    description: "Experiment the power of infinite possibilities",
+    monthlyPrice: 12,
+    yearlyPrice: 8,
+    features: [
+      "4 Users",
+      "All apps",
+      "Unlimited editable exports",
+      "Folders and collaboration",
+      "All incoming apps",
+    ],
+    buttonText: "Go to pro",
+    isPopular: true,
   },
   {
-    id: "3",
-    imageSrc: "/images/products/plant5.png",
-    title: "Calathea plant",
-    subTitle: "For Small Decs Ai Plat",
-    category: "Trendy House Plant",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    price: "120",
-  },
-  {
-    id: "4",
-    imageSrc: "/images/products/plant4.png",
-    title: "Calathea plant",
-    subTitle: "For Fresh Decs Ai Plat",
-    category: "Trendy House Plant",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    price: "90",
-  },
-  {
-    id: "5",
-    imageSrc: "/images/products/plant5.png",
-    title: "Calathea plant",
-    subTitle: "For Small Decs Ai Plat",
-    category: "Trendy House Plant",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    price: "105",
-  },
-  {
-    id: "6",
-    imageSrc: "/images/products/plant6.png",
-    title: "Calathea plant",
-    subTitle: "For Fresh Decs Ai Plat",
-    category: "Trendy House Plant",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    price: "115",
-  },
-  {
-    id: "7",
-    imageSrc: "/images/products/plant7.png",
-    title: "Calathea plant",
-    subTitle: "For Small Decs Ai Plat",
-    category: "Trendy House Plant",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    price: "300",
-  },
-];
-
-export const reviews = [
-  {
-    id: "1",
-    name: "Alena Patel",
-    photo: "/images/clients/client1.png",
-    raiting: 4,
-    review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
-  },
-  {
-    id: "2",
-    name: "Maxn Ravall",
-    photo: "/images/clients/client2.png",
-    raiting: 5,
-    review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
-  },
-  {
-    id: "3",
-    name: "Venely K",
-    photo: "/images/clients/client3.png",
-    raiting: 5,
-    review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
-  },
-  {
-    id: "4",
-    name: "Lii thakur",
-    photo: "/images/clients/client4.png",
-    raiting: 5,
-    review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+    id: "business",
+    title: "Business",
+    description: "Unveil new superpowers and join the Design League",
+    monthlyPrice: 20,
+    yearlyPrice: 16,
+    features: [
+      "All the features of pro plan",
+      "Account success manager",
+      "Single Sign-On (SSO)",
+      "Co-conception program",
+      "Collaboration-Soon",
+    ],
+    buttonText: "Go to Business",
+    isPopular: false,
   },
 ];
