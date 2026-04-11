@@ -4,6 +4,7 @@ import ColabsSection from "./_components/ColabsSection";
 import SupportSection from "./_components/SupportSection";
 import FeaturesSection from "./_components/FeaturesSection";
 import BenifitsSection from "./_components/BenifitsSection";
+import ChoosePlanSection from "./_components/ChoosePlanSection";
 
 export default function Home() {
   return (
@@ -14,7 +15,10 @@ export default function Home() {
       </div>
       <SupportSection />
       <FeaturesSection />
-      <BenifitsSection />
+      <div className="bg-linear-to-br from-white to-[#E8F5F1]">
+        <BenifitsSection />
+        <ChoosePlanSection />
+      </div>
     </main>
   );
 }

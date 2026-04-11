@@ -1,10 +1,11 @@
 import Image from "next/image";
-import { benefits } from "./_constants/constants";
-import { CheckSvg, ImageSvg } from "./_icon";
 import Badge from "./shared/Badge";
 import BadgeIcon from "./shared/BadgeIcon";
 import BadgeMessage from "./shared/BadgeMessage";
 import BadgeClient from "./shared/BadgeClient";
+import CheckItem from "./shared/CheckItem";
+import { ImageSvg } from "./_icon";
+import { benefits } from "./_constants/constants";
 
 const BenifitsSection = () => {
   return (
@@ -17,7 +18,7 @@ const BenifitsSection = () => {
             </h2>
             <ul className="flex flex-col gap-7.5">
               {benefits.map((benefit, index) => (
-                <BenifitItem {...benefit} key={index} />
+                <CheckItem {...benefit} key={index} />
               ))}
             </ul>
           </div>
@@ -42,7 +43,7 @@ const BenifitsSection = () => {
               height={529}
               className="object-contain object-center rounded-[20px]"
             />
-            <div className="absolute top-[30%] xl:top-[20%] right-[-45%] xl:-right-[35%] -translate-x-[50%] z-10">
+            <div className="absolute top-[30%] xl:top-[20%] right-[-30%] xl:-right-[35%] -translate-x-[50%] z-10">
               <Badge
                 title={"Total Income"}
                 price={"245.00"}
@@ -57,19 +58,3 @@ const BenifitsSection = () => {
 };
 
 export default BenifitsSection;
-
-interface BenifitItemProps {
-  id: string;
-  item: string;
-}
-
-const BenifitItem = (props: BenifitItemProps) => {
-  return (
-    <li className="flex items-center gap-5">
-      <div className="rounded-full bg-[#54BD95] p-1 h-8 w-8 flex items-center justify-center">
-        <CheckSvg className="text-white" />
-      </div>
-      <p className="font-medium text-[18px]">{props.item}</p>
-    </li>
-  );
-};
