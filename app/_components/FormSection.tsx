@@ -29,12 +29,16 @@ const FormSection = () => {
             </div>
             <ul className="flex gap-5">
               {reviews.map((client, index) => (
-                <li key={index} className="rounded-full overflow-hidden">
+                <li
+                  key={index}
+                  className="rounded-full overflow-hidden max-w-16.5 max-h-16.5"
+                >
                   <Image
                     src={client}
                     alt={"Client review"}
                     height={66}
                     width={66}
+                    className="object-cover"
                   />
                 </li>
               ))}
