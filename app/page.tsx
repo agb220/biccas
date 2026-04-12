@@ -5,6 +5,7 @@ import SupportSection from "./_components/SupportSection";
 import FeaturesSection from "./_components/FeaturesSection";
 import BenifitsSection from "./_components/BenifitsSection";
 import ChoosePlanSection from "./_components/ChoosePlanSection";
+import FormSection from "./_components/FormSection";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
         <BenifitsSection />
         <ChoosePlanSection />
       </div>
+      <FormSection />
     </main>
   );
 }

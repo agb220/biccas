@@ -4,7 +4,7 @@ import InputSub from "../shared/InputSub";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#161C28] py-10">
+    <footer className="bg-[#161C28] py-5 xl:py-10">
       <div className="container">
         <div className="pb-15 flex flex-col xl:flex-row justify-between gap-10 xl:gap-5">
           <div className="flex flex-col gap-7.5">

@@ -17,7 +17,7 @@ const ChoosePlanSection = () => {
           Choose plan that works best for you, feel free to contact us
         </p>
 
-        <div className="flex gap-2 p-1 bg-white shadow-md rounded-xl">
+        <div className="flex gap-2 p-1 bg-white shadow-md rounded-xl mb-5 xl;mb-0">
           <Button
             onClick={() => setIsYearly(false)}
             className={`px-8 py-3 rounded-lg font-medium transition-all bg-white ${
@@ -36,7 +36,7 @@ const ChoosePlanSection = () => {
           </Button>
         </div>
       </div>
-      <div className="overflow-x-auto py-14">
+      <div className="overflow-x-auto xl:py-14">
         <ul className="flex gap-7 max-w-6xl mx-auto items-stretch">
           {plans.map((plan) => (
             <PlanCard key={plan.id} plan={plan} isYearly={isYearly} />
