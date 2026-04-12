@@ -24,7 +24,7 @@ const PlanCard = ({ plan, isYearly }: PlanCardProps) => {
     <li
       className={`flex flex-col p-5 rounded-[30px] transition-all border-2 border-transparent duration-500 hover:border-[#54BD95] min-w-full md:min-w-93.5 ${
         isPopular
-          ? "bg-[#54BD95] text-white shadow-xl scale-105 hover:border-white hover:scale-110"
+          ? "bg-[#54BD95] text-white shadow-xl md:scale-105 hover:border-white hover:scale-110"
           : "bg-white text-black shadow-sm hover:border-[#54BD95] hover:scale-105"
       }`}
     >

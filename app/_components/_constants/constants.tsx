@@ -124,3 +124,10 @@ export const plans = [
     isPopular: false,
   },
 ];
+
+export const reviews = [
+  "/images/benefits/client.png",
+  "/images/clients/client2.png",
+  "/images/clients/client3.png",
+  "/images/clients/client4.png",
+];

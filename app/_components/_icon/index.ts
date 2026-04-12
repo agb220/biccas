@@ -10,6 +10,7 @@ import DataBaseSvg from "./DataBaseSvg";
 import DiagramSvg from "./DiagramSvg";
 import ImageSvg from "./ImageSvg";
 import MessageSvg from "./MessageSvg";
+import QuoteSvg from "./QuoteSvg";
 
 export {
   ArrowSvg,
@@ -24,4 +25,5 @@ export {
   GrammarlySvg,
   ImageSvg,
   ChatSvg,
+  QuoteSvg,
 };
