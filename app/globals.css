@@ -55,3 +55,13 @@ body {
 *::-webkit-scrollbar-track {
   background-color: transparent;
 }
+
+/*MODAl*/
+
+.modal {
+  @apply absolute inset-0 top-[50%]! flex h-fit max-h-[90vh] w-fit max-w-[90vw] translate-y-[-50%] flex-col overflow-hidden outline-none left-[50%]! translate-x-[-50%];
+  @apply max-md:max-h-[85vh] max-md:w-full rounded-2xl;
+  @apply bg-[#0b252b]/90 backdrop-blur-xl;
+  @apply border border-white/10;
+  @apply shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_30px_rgba(84,189,149,0.05)];
+}

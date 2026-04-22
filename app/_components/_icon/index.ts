@@ -6,11 +6,13 @@ import GrammarlySvg from "./clients/GrammarlySvg";
 import IntercomSvg from "./clients/IntercomSvg";
 import NotionSvg from "./clients/NotionSvg";
 import UnsplashSvg from "./clients/UnsplashSvg";
+import { CloseSvg } from "./CloseSvg";
 import DataBaseSvg from "./DataBaseSvg";
 import DiagramSvg from "./DiagramSvg";
 import ImageSvg from "./ImageSvg";
 import MessageSvg from "./MessageSvg";
 import QuoteSvg from "./QuoteSvg";
+import UserSvg from "./UserSvg";
 
 export {
   ArrowSvg,
@@ -26,4 +28,6 @@ export {
   ImageSvg,
   ChatSvg,
   QuoteSvg,
+  CloseSvg,
+  UserSvg,
 };

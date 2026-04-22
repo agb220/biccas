@@ -1,3 +1,5 @@
+"use client";
+import { useAuth } from "@/context/AuthContext";
 import { plans } from "../_constants/constants";
 import Button from "./Button";
 import CheckItem from "./CheckItem";
@@ -19,6 +21,7 @@ const PlanCard = ({ plan, isYearly }: PlanCardProps) => {
     isPopular,
   } = plan;
   const price = isYearly ? yearlyPrice : monthlyPrice;
+  const { handlePlanSelection } = useAuth();
 
   return (
     <li
@@ -53,6 +56,7 @@ const PlanCard = ({ plan, isYearly }: PlanCardProps) => {
           isPopular ? "bg-white text-[#74B699]" : "bg-white text-[#74B699]"
         }`}
         variant={"outline"}
+        onClick={() => handlePlanSelection(plan.id)}
       >
         {buttonText}
       </Button>
