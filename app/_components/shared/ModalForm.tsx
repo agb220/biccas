@@ -1,28 +1,23 @@
 "use client";
 import type { Styles } from "react-modal";
+import Link from "next/link";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 import Modal from "react-modal";
 import Button from "../shared/Button";
-
-import { useState } from "react";
+import LoginForm from "./LoginForm";
 import { cn } from "@/app/cn";
 import { CloseSvg } from "../_icon";
-import LoginForm from "./LoginForm";
 
 interface ModalFormProps {
   isOpen: boolean;
   setIsOpenModal: (arg0: boolean) => void;
-  title?: string;
-  subTitle?: string;
-  sendFormTitle?: string;
-  isResultModal: boolean;
-  setIsResultModal: (isOpen: boolean) => void;
-  success: null | boolean;
-  message: string;
-  setModalMessage: (arg: string) => void;
-  setIsSuccess: (arg: boolean) => void;
 }
 
 const ModalForm = (props: ModalFormProps) => {
+  const { signInWithGoogle } = useAuth();
+  const router = useRouter();
+
   const closeModal = () => {
     document.body.style.overflow = "";
     props.setIsOpenModal(false);
@@ -30,6 +25,20 @@ const ModalForm = (props: ModalFormProps) => {
   if (props.isOpen) {
     document.body.style.overflow = "hidden";
   }
+
+  if (props.isOpen) {
+    document.body.style.overflow = "hidden";
+  }
+
+  const handleGoogleClick = async () => {
+    try {
+      await signInWithGoogle();
+      closeModal();
+      router.push("/account");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <Modal
@@ -61,6 +70,31 @@ const ModalForm = (props: ModalFormProps) => {
               closeModal();
             }}
           />
+          <div className="relative my-8 text-center">
+            <span className="relative px-4  text-white/40 text-sm uppercase">
+              or
+            </span>
+          </div>
+
+          <Button
+            onClick={handleGoogleClick}
+            className="w-full rounded-[10px]"
+            variant="outline"
+          >
+            Continue with Google
+          </Button>
+          <div className="mt-6 text-center">
+            <p className="text-white/60">
+              Don't have an account?{" "}
+              <Link
+                href="/sign-up"
+                onClick={handleGoogleClick}
+                className="text-[#54BD95] hover:underline font-medium"
+              >
+                Sign Up
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </Modal>

@@ -1,10 +1,14 @@
+"use client";
 import Image from "next/image";
 import Button from "./shared/Button";
 import Badge from "./shared/Badge";
 import BadgeIcon from "./shared/BadgeIcon";
 import { CheckSvg, DataBaseSvg, MessageSvg } from "./_icon";
+import { useAuth } from "@/context/AuthContext";
 
 const HeroSection = () => {
+  const { handlePlanSelection } = useAuth();
+
   return (
     <section className="xl:pt-52.5 xl:pb-32.5 pt-20 md:pt-30 pb-20 overflow-hidden">
       <div className="container flex items-center flex-col xl:flex-row gap-8.75 justify-between">
@@ -24,7 +28,10 @@ const HeroSection = () => {
             day.
           </p>
           <div>
-            <Button className="rounded-[40px] py-5 px-7.5">
+            <Button
+              className="rounded-[40px] py-5 px-7.5"
+              onClick={() => handlePlanSelection("free")}
+            >
               Try free trial
             </Button>
           </div>

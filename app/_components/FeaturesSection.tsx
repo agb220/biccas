@@ -1,8 +1,12 @@
+"use client";
 import Image from "next/image";
 import Button from "./shared/Button";
 import { features } from "./_constants/constants";
+import { useAuth } from "@/context/AuthContext";
 
 const FeaturesSection = () => {
+  const { handlePlanSelection } = useAuth();
+
   return (
     <section className="pt-32.5 pb-12.5">
       <div className="container">
@@ -14,7 +18,10 @@ const FeaturesSection = () => {
             We offer a variety of interesting features that you can help
             increase yor productivity at work and manage your projrct esaly
           </p>
-          <Button className="rounded-[70px] hidden md:block">
+          <Button
+            className="rounded-[70px] hidden md:block py-4.5 px-7.75"
+            onClick={() => handlePlanSelection("free")}
+          >
             Get Started
           </Button>
         </div>
@@ -27,7 +34,12 @@ const FeaturesSection = () => {
         </div>
       </div>
 
-      <Button className="rounded-[70px]  md:hidden w-full">Get Started</Button>
+      <Button
+        className="rounded-[70px] md:hidden w-full py-4.5 px-7.75"
+        onClick={() => handlePlanSelection("free")}
+      >
+        Get Started
+      </Button>
     </section>
   );
 };

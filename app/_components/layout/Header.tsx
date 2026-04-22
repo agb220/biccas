@@ -13,7 +13,7 @@ import { UserSvg } from "../_icon";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const { user, logout } = useAuth();
+  const { user, logout, loading } = useAuth();
 
   return (
     <>
@@ -49,9 +49,15 @@ const Header = () => {
                   ))}
                 </ul>
               </nav>
-              <div className="flex items-center justify-between gap-5">
-                {!user ? (
-                  <>
+              <div className="flex items-center justify-end gap-5 min-w-50">
+                {loading ? (
+                  /* Скелетон-лоадер: плавно з'являється і не дає кнопкам мигати */
+                  <div className="flex items-center gap-6 animate-pulse">
+                    <div className="h-5 w-12 bg-white/10 rounded-md"></div>
+                    <div className="h-12 w-28 bg-white/10 rounded-xl"></div>
+                  </div>
+                ) : !user ? (
+                  <div className="flex items-center gap-5 animate-in fade-in duration-500">
                     <button
                       className="text-[18px] font-medium relative pb-1 hover:text-[#54BD95] transition-colors duration-500
                              after:content-[''] after:absolute after:left-0 after:bottom-0 
@@ -65,18 +71,20 @@ const Header = () => {
                     <Button as="a" href="/sign-up">
                       Sign Up
                     </Button>
-                  </>
+                  </div>
                 ) : (
-                  <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-6 animate-in fade-in zoom-in-95 duration-500">
                     <Link
                       href="/account"
-                      className="flex items-center gap-2 text-[18px] font-medium hover:text-[#54BD95] transition-colors duration-300"
+                      className="flex items-center gap-2 text-[18px] font-medium hover:text-[#54BD95] transition-all duration-300 group"
                     >
-                      <UserSvg />
+                      <div className="p-2 rounded-full bg-white/5 group-hover:bg-[#54BD95]/10 transition-colors">
+                        <UserSvg className="size-6" />
+                      </div>
                     </Link>
                     <button
                       onClick={logout}
-                      className="text-[18px] font-medium text-gray-400 hover:text-red-400 transition-colors duration-300"
+                      className="text-[18px] font-medium  hover:text-red-400 transition-colors duration-300"
                     >
                       Logout
                     </button>
@@ -101,22 +109,7 @@ const Header = () => {
         </div>
       </header>
       {isLoginOpen && (
-        <ModalForm
-          isOpen={isLoginOpen}
-          setIsOpenModal={setIsLoginOpen}
-          isResultModal={false}
-          setIsResultModal={function (isOpen: boolean): void {
-            throw new Error("Function not implemented.");
-          }}
-          success={null}
-          message={""}
-          setModalMessage={function (arg: string): void {
-            throw new Error("Function not implemented.");
-          }}
-          setIsSuccess={function (arg: boolean): void {
-            throw new Error("Function not implemented.");
-          }}
-        />
+        <ModalForm isOpen={isLoginOpen} setIsOpenModal={setIsLoginOpen} />
       )}
     </>
   );

@@ -1,21 +1,29 @@
 "use client";
 import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/lib/firebase";
 import Button from "../shared/Button";
 import Input from "./Input";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 const LoginForm = ({ onSuccess }: { onSuccess: () => void }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const { loginWithEmail } = useAuth();
+  const router = useRouter();
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      setError("");
+      await loginWithEmail(email, password);
+
+      router.push("/account");
+      router.refresh();
       onSuccess();
     } catch (err: any) {
+      console.error(err);
       setError("Invalid email or password");
     }
   };

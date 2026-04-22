@@ -8,13 +8,16 @@ import { auth, db } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
 import Input from "../_components/shared/Input";
 import Button from "../_components/shared/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthContext";
+import ModalForm from "../_components/shared/ModalForm";
 
 export default function SignUpPage() {
   const [serverError, setServerError] = useState("");
   const router = useRouter();
-  const { loginWithEmail, signInWithGoogle } = useAuth();
+  const { loginWithEmail, signInWithGoogle, user, loading } = useAuth();
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const { selectedPlan } = useAuth();
 
   const {
     register,
@@ -27,6 +30,7 @@ export default function SignUpPage() {
   const onSubmit = async (data: SignUpValues) => {
     try {
       setServerError("");
+
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         data.email,
@@ -35,34 +39,55 @@ export default function SignUpPage() {
 
       await updateProfile(userCredential.user, { displayName: data.name });
 
+      const planToSave = selectedPlan || {
+        id: "free",
+        title: "Free",
+        monthlyPrice: 0,
+      };
+
+      const startDate = new Date();
+      const endDate = new Date();
+      endDate.setDate(startDate.getDate() + 30);
+
       await setDoc(doc(db, "users", userCredential.user.uid), {
         uid: userCredential.user.uid,
         name: data.name,
         email: data.email,
         subscription: {
-          plan: "free",
-          status: "inactive",
-          startDate: null,
-          endDate: null,
+          planId: planToSave.id,
+          planTitle: planToSave.title,
+          status: planToSave.id === "free" ? "active" : "pending_payment",
+          monthlyPrice: planToSave.monthlyPrice,
+          startDate: startDate.toISOString(),
+          endDate: planToSave.id === "free" ? null : endDate.toISOString(),
         },
-        createdAt: new Date().toISOString(),
+        createdAt: startDate.toISOString(),
       });
 
-      router.push("/account");
+      if (planToSave.id !== "free") {
+        router.push("/checkout");
+      } else {
+        router.push("/account");
+      }
     } catch (err: any) {
       console.error("Firebase error details:", err.code, err.message);
-
-      if (err.code === "auth/email-already-in-use") {
-        setServerError("This email address is already taken");
-      } else if (err.code === "auth/invalid-email") {
-        setServerError("Invalid email format");
-      } else if (err.code === "auth/weak-password") {
-        setServerError("Password is too weak");
-      } else {
-        setServerError(err.message);
-      }
     }
   };
+
+  console.log("user", user);
+
+  useEffect(() => {
+    if (!loading && user) {
+      console.log("Юзер залогінився, роблю редирект...");
+      const path = "/account";
+
+      const timer = setTimeout(() => {
+        window.location.href = path;
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [user, loading, selectedPlan, router]);
 
   return (
     <main className="min-h-screen flex items-center justify-center  pt-20 px-4">
@@ -71,7 +96,7 @@ export default function SignUpPage() {
 
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col gap-6 mb-10"
+          className="flex flex-col gap-4 mb-8"
         >
           <div>
             <Input
@@ -144,7 +169,25 @@ export default function SignUpPage() {
         >
           Continue with Google
         </button>
+        <div className="mt-6 text-center">
+          <p className="text-white/60">
+            Do you have an account?{" "}
+            <button
+              className="text-[18px] font-medium relative pb-1 hover:text-[#54BD95] transition-colors duration-500
+                             after:content-[''] after:absolute after:left-0 after:bottom-0 
+                             after:h-0.5 after:w-full after:bg-[#54BD95] 
+                             after:scale-x-0 after:origin-center 
+                             hover:after:scale-x-100 after:transition-transform after:duration-500 after:ease-out"
+              onClick={() => setIsLoginOpen(true)}
+            >
+              Login
+            </button>
+          </p>
+        </div>
       </div>
+      {isLoginOpen && (
+        <ModalForm isOpen={isLoginOpen} setIsOpenModal={setIsLoginOpen} />
+      )}
     </main>
   );
 }
