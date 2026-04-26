@@ -1,45 +1,97 @@
 "use client";
+import { useRef } from "react";
 import Image from "next/image";
 import Button from "./shared/Button";
 import { features } from "./_constants/constants";
 import { useAuth } from "@/context/AuthContext";
+import { motion, useInView, Variants } from "framer-motion";
 
 const FeaturesSection = () => {
   const { handlePlanSelection } = useAuth();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
+
+  const headerVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemFadeUp: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
 
   return (
-    <section className="pt-32.5 pb-12.5">
+    <section ref={ref} className="pt-32.5 pb-12.5">
       <div className="container">
-        <div className="flex justify-between gap-6 lg:gap-2 items-center flex-col lg:flex-row mb-18.5">
-          <h2 className="text-[28px] md:text-[38px] xl:text-[50px] font-semibold lg:max-w-82.75">
+        <motion.div
+          variants={headerVariants}
+          animate={isInView ? "visible" : "hidden"}
+          transition={{ staggerChildren: 0.2 }}
+          className="flex justify-between gap-6 lg:gap-2 items-center flex-col lg:flex-row mb-18.5"
+        >
+          <motion.h2
+            variants={itemFadeUp}
+            className="text-[28px] md:text-[38px] xl:text-[50px] font-semibold lg:max-w-82.75"
+          >
             Our Features you cab get
-          </h2>
-          <p className="font-medium text-[16px] text-[#A6A6A6] lg:max-w-115.25">
+          </motion.h2>
+          <motion.p
+            variants={itemFadeUp}
+            className="font-medium text-[16px] text-[#A6A6A6] lg:max-w-115.25"
+          >
             We offer a variety of interesting features that you can help
             increase yor productivity at work and manage your projrct esaly
-          </p>
-          <Button
-            className="rounded-[70px] hidden md:block py-4.5 px-7.75"
-            onClick={() => handlePlanSelection("free")}
-          >
-            Get Started
-          </Button>
-        </div>
+          </motion.p>
+          <motion.div variants={itemFadeUp}>
+            <Button
+              className="rounded-[70px] hidden md:block py-4.5 px-7.75"
+              onClick={() => handlePlanSelection("free")}
+            >
+              Get Started
+            </Button>
+          </motion.div>
+        </motion.div>
         <div className="overflow-x-auto mb-12 md:mb-0">
-          <ul className="flex gap-5 md:gap-11 justify-between items-center">
+          <motion.ul
+            variants={containerVariants}
+            animate={isInView ? "visible" : "hidden"}
+            transition={{ staggerChildren: 0.2 }}
+            className="flex gap-5 md:gap-11 justify-between items-center"
+          >
             {features.map((feature, index) => (
               <FeatureCard {...feature} key={index} />
             ))}
-          </ul>
+          </motion.ul>
         </div>
       </div>
-
-      <Button
-        className="rounded-[70px] md:hidden w-full py-4.5 px-7.75"
-        onClick={() => handlePlanSelection("free")}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        className="px-container md:hidden"
       >
-        Get Started
-      </Button>
+        <Button
+          className="rounded-[70px] md:hidden w-full py-4.5 px-7.75"
+          onClick={() => handlePlanSelection("free")}
+        >
+          Get Started
+        </Button>
+      </motion.div>
     </section>
   );
 };
@@ -53,8 +105,25 @@ interface FeatureCardProps {
 }
 
 const FeatureCard = (props: FeatureCardProps) => {
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+      },
+    },
+  };
+
   return (
-    <li className="rounded-[20px] shadow-[0_50px_20px_rgba(0,0,0,0.04)] bg-white group flex flex-col gap-7.5 w-full min-w-full md:min-w-91 border border-green-50 hover:border-[#54BD95] transition-colors duration-500">
+    <motion.li
+      variants={cardVariants}
+      className="rounded-[20px] shadow-[0_50px_20px_rgba(0,0,0,0.04)] bg-white group flex flex-col gap-7.5 w-full min-w-full md:min-w-91 border border-green-50 hover:border-[#54BD95] transition-colors duration-500"
+    >
       <div className="aspect-364/430 h-90 md:h-107.5 w-full md:w-auto overflow-hidden rounded-tr-[20px] rounded-tl-[20px]">
         <Image
           src={props.imgSrc}
@@ -72,6 +141,6 @@ const FeatureCard = (props: FeatureCardProps) => {
           {props.desc}
         </p>
       </div>
-    </li>
+    </motion.li>
   );
 };
