@@ -10,7 +10,7 @@ const SupportSection = () => {
 
   const isInView = useInView(ref, {
     once: false,
-    amount: 0.4,
+    amount: 0.3,
   });
 
   const containerVariants: Variants = {
@@ -52,8 +52,7 @@ const SupportSection = () => {
         <motion.div
           variants={childColumnVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false }}
+          animate={isInView ? "visible" : "hidden"}
           className="flex flex-col justify-between h-full gap-10 xl:gap-18"
         >
           <div className="flex flex-col gap-7.5">
