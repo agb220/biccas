@@ -1,23 +1,74 @@
+"use client";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { raiting, supportItems } from "./_constants/constants";
 import StarSvg from "./_icon/StarSvg";
 
 const SupportSection = () => {
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.4,
+      },
+    },
+  };
+
+  const childColumnVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.2,
+        when: "beforeChildren",
+      },
+    },
+  };
+
+  const itemFadeUp: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <section className="bg-[#F9F8FE] py-15">
-      <div className="container flex flex-col lg:flex-row justify-between gap-14 xl:gap-6.75">
-        <div className="flex flex-col justify-between h-full gap-10 xl:gap-18">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        className="container flex flex-col lg:flex-row justify-between gap-14 xl:gap-6.75"
+      >
+        <motion.div
+          variants={childColumnVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="flex flex-col justify-between h-full gap-10 xl:gap-18"
+        >
           <div className="flex flex-col gap-7.5">
-            <h2 className="text-[28px] md:text-[38px] xl:text-[50px] font-semibold">
+            <motion.h2
+              variants={itemFadeUp}
+              className="text-[28px] md:text-[38px] xl:text-[50px] font-semibold"
+            >
               How we support our pratner all over the world
-            </h2>
-            <p className="font-medium text-[16px] text-[#A6A6A6]">
+            </motion.h2>
+            <motion.p
+              variants={itemFadeUp}
+              className="font-medium text-[16px] text-[#A6A6A6]"
+            >
               SaaS become a common delivery model for many business application,
               including office software, messaging software, payroll processing
               software, DBMS software, management software
-            </p>
+            </motion.p>
           </div>
-          <ul className="flex gap-20 max-w-127.25 flex-wrap md:flex-nowrap">
+          <motion.ul
+            variants={itemFadeUp}
+            className="flex gap-20 max-w-127.25 flex-wrap md:flex-nowrap"
+          >
             {raiting.map((item, index) => (
               <SupportRaiting
                 raiting={item.raitin}
@@ -25,16 +76,22 @@ const SupportSection = () => {
                 key={index}
               />
             ))}
-          </ul>
-        </div>
+          </motion.ul>
+        </motion.div>
         <div>
-          <ul className="flex flex-col gap-7.5">
+          <motion.ul
+            variants={childColumnVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex flex-col gap-7.5"
+          >
             {supportItems.map((itemSupport, index) => (
               <SupportItem {...itemSupport} key={index} />
             ))}
-          </ul>
+          </motion.ul>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
@@ -48,6 +105,7 @@ interface SupportRaitingPrpops {
 
 const SupportRaiting = ({ raiting, label }: SupportRaitingPrpops) => {
   const numericRating = parseFloat(raiting);
+
   return (
     <li className="flex flex-col gap-4.5">
       <div className="flex gap-1">
@@ -83,8 +141,18 @@ interface SupportItemProps {
 }
 
 const SupportItem = (props: SupportItemProps) => {
+  const cardScaleVariants: Variants = {
+    hidden: { opacity: 0, scale: 0.8, x: 50 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      x: 0,
+      transition: { type: "spring", stiffness: 200, damping: 20 },
+    },
+  };
+
   return (
-    <li className="flex gap-6">
+    <motion.li variants={cardScaleVariants} className="flex gap-6">
       <div className=" bg-white p-3.75 w-15 h-15">
         <Image
           src={props.icon}
@@ -102,6 +170,6 @@ const SupportItem = (props: SupportItemProps) => {
           {props.desc}
         </p>
       </div>
-    </li>
+    </motion.li>
   );
 };
