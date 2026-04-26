@@ -3,6 +3,7 @@ import { useAuth } from "@/context/AuthContext";
 import { plans } from "../_constants/constants";
 import Button from "./Button";
 import CheckItem from "./CheckItem";
+import { li } from "framer-motion/client";
 
 interface PlanCardProps {
   plan: (typeof plans)[0];
@@ -24,7 +25,7 @@ const PlanCard = ({ plan, isYearly }: PlanCardProps) => {
   const { handlePlanSelection } = useAuth();
 
   return (
-    <li
+    <div
       className={`flex flex-col p-5 rounded-[30px] transition-all border-2 border-transparent duration-500 hover:border-[#54BD95] min-w-full md:min-w-93.5 ${
         isPopular
           ? "bg-[#54BD95] text-white shadow-xl md:scale-105 hover:border-white hover:scale-110"
@@ -47,7 +48,9 @@ const PlanCard = ({ plan, isYearly }: PlanCardProps) => {
 
       <ul className="flex flex-col gap-4 mb-10 grow bg-[#F9FAFB] p-4 rounded-[10px] text-[#191A15]">
         {features.map((feature, idx) => (
-          <CheckItem key={idx} item={feature} id={id} />
+          <li key={idx}>
+            <CheckItem item={feature} id={id} />
+          </li>
         ))}
       </ul>
 
@@ -60,7 +63,7 @@ const PlanCard = ({ plan, isYearly }: PlanCardProps) => {
       >
         {buttonText}
       </Button>
-    </li>
+    </div>
   );
 };
 
