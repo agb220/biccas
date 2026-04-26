@@ -1,10 +1,18 @@
 "use client";
-import { motion, Variants } from "framer-motion";
+import { useRef } from "react";
+import { motion, Variants, useInView } from "framer-motion";
 import Image from "next/image";
 import { raiting, supportItems } from "./_constants/constants";
 import StarSvg from "./_icon/StarSvg";
 
 const SupportSection = () => {
+  const ref = useRef(null);
+
+  const isInView = useInView(ref, {
+    once: false,
+    amount: 0.4,
+  });
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -34,19 +42,18 @@ const SupportSection = () => {
   };
 
   return (
-    <section className="bg-[#F9F8FE] py-15">
+    <section ref={ref} className="bg-[#F9F8FE] py-15">
       <motion.div
         variants={containerVariants}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        animate={isInView ? "visible" : "hidden"}
         className="container flex flex-col lg:flex-row justify-between gap-14 xl:gap-6.75"
       >
         <motion.div
           variants={childColumnVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           className="flex flex-col justify-between h-full gap-10 xl:gap-18"
         >
           <div className="flex flex-col gap-7.5">
@@ -82,8 +89,8 @@ const SupportSection = () => {
           <motion.ul
             variants={childColumnVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            animate={isInView ? "visible" : "hidden"}
+            viewport={{ once: false }}
             className="flex flex-col gap-7.5"
           >
             {supportItems.map((itemSupport, index) => (

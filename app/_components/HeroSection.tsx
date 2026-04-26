@@ -1,6 +1,7 @@
 "use client";
+import { useRef } from "react";
 import Image from "next/image";
-import { motion, Variants } from "framer-motion";
+import { motion, useInView, Variants } from "framer-motion";
 import Button from "./shared/Button";
 import Badge from "./shared/Badge";
 import BadgeIcon from "./shared/BadgeIcon";
@@ -8,7 +9,10 @@ import { useAuth } from "@/context/AuthContext";
 import { CheckSvg, DataBaseSvg, MessageSvg } from "./_icon";
 
 const HeroSection = () => {
+  const containerRef = useRef(null);
   const { handlePlanSelection } = useAuth();
+
+  const isInView = useInView(containerRef, { once: false, amount: 0.1 });
 
   const badgeVariants: Variants = {
     hidden: { scale: 0, opacity: 0 },
@@ -55,12 +59,15 @@ const HeroSection = () => {
 
   return (
     <section className="xl:pt-52.5 xl:pb-32.5 pt-20 md:pt-30 pb-20 overflow-hidden">
-      <div className="container flex items-center flex-col xl:flex-row gap-8.75 justify-between">
+      <div
+        ref={containerRef}
+        className="container flex items-center flex-col xl:flex-row gap-8.75 justify-between"
+      >
         <motion.div
           className="flex flex-col xl:max-w-1/2"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          animate={isInView ? "visible" : "hidden"}
         >
           <motion.h1
             variants={itemVariants}
@@ -68,7 +75,7 @@ const HeroSection = () => {
           >
             We’re here to Increase your Productivity
           </motion.h1>
-          <div className="mb-7.5 w-full max-w-[487px]">
+          <div className="mb-7.5 w-full max-w-121.75">
             <svg
               width="487"
               height="34"
@@ -108,8 +115,7 @@ const HeroSection = () => {
             custom={0.2}
             variants={badgeVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            animate={isInView ? "visible" : "hidden"}
             className="absolute top-[-5%] md:top-[5%] left-[15%] md:-left-[10%] -translate-x-[30%] md:-translate-x-[50%] z-10"
           >
             <Badge
@@ -137,8 +143,7 @@ const HeroSection = () => {
             custom={0.8}
             variants={badgeVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            animate={isInView ? "visible" : "hidden"}
             className="absolute bottom-[5%] left-0 md:-left-[15%] -translate-x-[20%] z-10"
           >
             <Badge
@@ -164,8 +169,7 @@ const HeroSection = () => {
             custom={0.4}
             variants={badgeVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            animate={isInView ? "visible" : "hidden"}
             className="absolute top-[15%] right-0 translate-x-1/3 z-10"
           >
             <BadgeIcon
@@ -177,8 +181,7 @@ const HeroSection = () => {
             custom={1.1}
             variants={badgeVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            animate={isInView ? "visible" : "hidden"}
             className="absolute bottom-[15%] -right-[10%] translate-x-[20%] translate-y-[10%] z-10 max-h-47 max-w-36.5"
           >
             <Image
@@ -193,8 +196,7 @@ const HeroSection = () => {
             custom={0.7}
             variants={badgeVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            animate={isInView ? "visible" : "hidden"}
             className="absolute -bottom-[5%] right-[15%] z-10"
           >
             <BadgeIcon

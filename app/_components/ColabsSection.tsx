@@ -1,8 +1,16 @@
 "use client";
-import { motion, Variants } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView, Variants } from "framer-motion";
 import { clients } from "./_constants/constants";
 
 const ColabsSection = () => {
+  const ref = useRef(null);
+
+  const isInView = useInView(ref, {
+    once: false,
+    amount: 0.4,
+  });
+
   const titleVariants: Variants = {
     hidden: { opacity: 0, y: 40 },
     visible: {
@@ -24,12 +32,14 @@ const ColabsSection = () => {
   };
 
   return (
-    <section className="container xl:px-10 pt-8 md:pt-12.5 pb-20 md:pb-32.5">
+    <section
+      ref={ref}
+      className="container xl:px-10 pt-8 md:pt-12.5 pb-20 md:pb-32.5"
+    >
       <motion.h2
         variants={titleVariants}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
+        animate={isInView ? "visible" : "hidden"}
         className="text-[26px] md:text-[32px] xl:text-[40px] font-bold text-center  mb-10 md:mb-14 xl:mb-18.5 text-[#191A15]"
       >
         More than 25,000 teams use Collabs
@@ -37,8 +47,7 @@ const ColabsSection = () => {
       <motion.ul
         variants={containerVariants}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
+        animate={isInView ? "visible" : "hidden"}
         className="flex items-center justify-between gap-10 overflow-x-auto no-scrollbar -mx-2 md:-mx-9 xl:mx-0"
       >
         {clients.map((client, index) => (
