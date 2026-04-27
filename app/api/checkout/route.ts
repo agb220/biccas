@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { planTitle, monthlyPrice, userId, email } = await req.json();
+    const { planTitle, monthlyPrice, userId, email, planId } = await req.json();
 
     const product = await stripe.products.create({
       name: planTitle,
@@ -25,6 +25,7 @@ export async function POST(req: Request) {
 
       metadata: {
         userId,
+        planId,
         planTitle,
         monthlyPrice: monthlyPrice.toString(),
       },
