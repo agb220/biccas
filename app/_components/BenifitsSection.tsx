@@ -49,6 +49,7 @@ const BenifitsSection = () => {
     <section
       ref={ref}
       className="pt-20 pb-28.5 bg-linear-to-br from-white to-[#E8F5F1]"
+      id="benefits"
     >
       <div className="container">
         <div className="flex flex-col xl:flex-row justify-between gap-5">

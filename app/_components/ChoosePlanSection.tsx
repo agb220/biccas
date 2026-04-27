@@ -50,7 +50,7 @@ const ChoosePlanSection = () => {
   };
 
   return (
-    <section ref={ref} className="py-20 container mx-auto">
+    <section ref={ref} className="py-20 container mx-auto" id="pricing">
       <motion.div
         variants={headerContainerVariants}
         initial="hidden"
@@ -103,7 +103,7 @@ const ChoosePlanSection = () => {
             <motion.li
               key={plan.id}
               variants={cardItemVariants}
-              className="flex flex-1"
+              className="flex flex-1 min-w-full md:min-w-93.5"
             >
               <PlanCard plan={plan} isYearly={isYearly} />
             </motion.li>

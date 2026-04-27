@@ -19,7 +19,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const section = document.getElementById("form-section");
+      const section = document.getElementById("contact");
       if (section) {
         const rect = section.getBoundingClientRect();
         if (rect.top <= 80) {
@@ -35,6 +35,27 @@ const Header = () => {
   }, []);
 
   const textColor = isDarkBg ? "text-white" : "";
+
+  const handleScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    e.preventDefault();
+
+    const targetId = href.replace("#", "");
+    const element = document.getElementById(targetId);
+
+    if (element) {
+      const offset = 60;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
     <>
@@ -64,14 +85,18 @@ const Header = () => {
                         textColor
                       )}
                     >
-                      <Link href={`${menu.href}`}>{menu.item}</Link>
+                      <Link
+                        href={`${menu.href}`}
+                        onClick={(e) => handleScroll(e, menu.href)}
+                      >
+                        {menu.item}
+                      </Link>
                     </li>
                   ))}
                 </ul>
               </nav>
               <div className="flex items-center justify-end gap-5 min-w-50">
                 {loading ? (
-                  /* Скелетон-лоадер: плавно з'являється і не дає кнопкам мигати */
                   <div className="flex items-center gap-6 animate-pulse">
                     <div className="h-5 w-12 bg-white/10 rounded-md"></div>
                     <div className="h-12 w-28 bg-white/10 rounded-xl"></div>

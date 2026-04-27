@@ -37,7 +37,7 @@ const FeaturesSection = () => {
   };
 
   return (
-    <section ref={ref} className="pt-32.5 pb-12.5">
+    <section ref={ref} className="pt-20 md:pt-32.5 pb-12.5" id="features">
       <div className="container">
         <motion.div
           variants={headerVariants}

@@ -17,6 +17,29 @@ const MobileMenu = (props: MobileMenuProps) => {
     props.closeMenu();
   };
 
+  const handleMobileClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    props.closeMenu();
+
+    const targetId = href.replace("#", "");
+    const element = document.getElementById(targetId);
+    if (element) {
+      e.preventDefault();
+      const offset = 70;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      setTimeout(() => {
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }, 300);
+    }
+  };
+
   return (
     <div
       className={`fixed inset-0 z-999 overflow-y-auto bg-[#191A15] flex flex-col transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] min-h-[99svh] ${
@@ -32,7 +55,7 @@ const MobileMenu = (props: MobileMenuProps) => {
             <li key={index} className="py-4">
               <Link
                 href={menu.href}
-                onClick={props.closeMenu}
+                onClick={(e) => handleMobileClick(e, menu.href)}
                 className="text-[24px] font-medium relative  text-[#54BD95] "
               >
                 {menu.item}
