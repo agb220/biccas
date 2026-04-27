@@ -74,11 +74,8 @@ export default function SignUpPage() {
     }
   };
 
-  console.log("user", user);
-
   useEffect(() => {
     if (!loading && user) {
-      console.log("Юзер залогінився, роблю редирект...");
       const path = "/account";
 
       const timer = setTimeout(() => {
