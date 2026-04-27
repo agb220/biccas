@@ -16,8 +16,6 @@ export async function POST(req: Request) {
       product: product.id,
     });
 
-    console.log("Creating session for user:", userId);
-
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: [{ price: price.id, quantity: 1 }],
@@ -39,8 +37,6 @@ export async function POST(req: Request) {
 
       customer_email: email,
     });
-
-    console.log("Creating session for user:", userId);
 
     return NextResponse.json({ url: session.url });
   } catch (err: any) {
