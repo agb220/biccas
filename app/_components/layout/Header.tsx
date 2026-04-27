@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/dist/client/link";
 import Button from "../shared/Button";
 import BurgerMenu from "./BurgerMenu";
@@ -12,6 +13,8 @@ import { UserSvg } from "../_icon";
 import { cn } from "@/app/cn";
 
 const Header = () => {
+  const pathname = usePathname();
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isDarkBg, setIsDarkBg] = useState(false);
@@ -40,20 +43,29 @@ const Header = () => {
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    e.preventDefault();
+    if (pathname !== "/") {
+      e.preventDefault();
 
-    const targetId = href.replace("#", "");
-    const element = document.getElementById(targetId);
+      window.location.href = href;
+      return;
+    }
 
-    if (element) {
-      const offset = 60;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+    if (pathname === "/") {
+      e.preventDefault();
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
+      const targetId = href.split("#")[1];
+      const element = document.getElementById(targetId);
+
+      if (element) {
+        const offset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
     }
   };
 
@@ -86,7 +98,7 @@ const Header = () => {
                       )}
                     >
                       <Link
-                        href={`${menu.href}`}
+                        href={menu.href}
                         onClick={(e) => handleScroll(e, menu.href)}
                       >
                         {menu.item}

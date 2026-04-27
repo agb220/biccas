@@ -7,10 +7,10 @@ import {
 } from "../_icon";
 
 export const menulist = [
-  { item: "Features", href: "#features" },
-  { item: "Benefits", href: "#benefits" },
-  { item: "Pricing", href: "#pricing" },
-  { item: "Contact", href: "#contact" },
+  { item: "Features", href: "/#features" },
+  { item: "Benefits", href: "/#benefits" },
+  { item: "Pricing", href: "/#pricing" },
+  { item: "Contact", href: "/#contact" },
 ];
 
 export const clients = [
