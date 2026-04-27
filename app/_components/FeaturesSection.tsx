@@ -86,7 +86,7 @@ const FeaturesSection = () => {
         className="px-container md:hidden"
       >
         <Button
-          className="rounded-[70px] md:hidden w-full py-4.5 px-7.75"
+          className="rounded-[70px] md:hidden w-full py-3.5 md:py-4.5 px-7.75"
           onClick={() => handlePlanSelection("free")}
         >
           Get Started
