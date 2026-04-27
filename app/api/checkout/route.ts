@@ -16,19 +16,31 @@ export async function POST(req: Request) {
       product: product.id,
     });
 
+    console.log("Creating session for user:", userId);
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: [{ price: price.id, quantity: 1 }],
       mode: "subscription",
       success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/account?success=true`,
       cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/checkout?canceled=true`,
+
       metadata: {
         userId,
         planTitle,
-        monthlyPrice,
+        monthlyPrice: monthlyPrice.toString(),
       },
+
+      subscription_data: {
+        metadata: {
+          userId,
+        },
+      },
+
       customer_email: email,
     });
+
+    console.log("Creating session for user:", userId);
 
     return NextResponse.json({ url: session.url });
   } catch (err: any) {
