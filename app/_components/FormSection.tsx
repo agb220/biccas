@@ -43,7 +43,11 @@ const FormSection = () => {
   };
 
   return (
-    <section ref={ref} className="bg-[#161C28] py-14 md:py-20 xl:py-32.5">
+    <section
+      ref={ref}
+      className="bg-[#161C28] py-14 md:py-20 xl:py-32.5"
+      id="form-section"
+    >
       <div className="container">
         <div className="flex flex-col xl:flex-row justify-between gap-12 xl:gap-25">
           <motion.div

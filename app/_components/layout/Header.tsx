@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/dist/client/link";
 import Button from "../shared/Button";
@@ -9,11 +9,32 @@ import ModalForm from "../shared/ModalForm";
 import { useAuth } from "@/context/AuthContext";
 import { menulist } from "../_constants/constants";
 import { UserSvg } from "../_icon";
+import { cn } from "@/app/cn";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isDarkBg, setIsDarkBg] = useState(false);
   const { user, logout, loading } = useAuth();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = document.getElementById("form-section");
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 80) {
+          setIsDarkBg(true);
+        } else {
+          setIsDarkBg(false);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const textColor = isDarkBg ? "text-white" : "";
 
   return (
     <>
@@ -38,11 +59,10 @@ const Header = () => {
                   {menulist.map((menu, index) => (
                     <li
                       key={index}
-                      className="text-[18px] font-medium relative pb-1 hover:text-[#54BD95] transition-colors duration-500
-                         after:content-[''] after:absolute after:left-0 after:bottom-0 
-                         after:h-0.5 after:w-full after:bg-[#54BD95] 
-                         after:scale-x-0 after:origin-center 
-                         hover:after:scale-x-100 after:transition-transform after:duration-500 after:ease-out"
+                      className={cn(
+                        "text-[18px] font-medium relative pb-1 hover:text-[#54BD95] transition-colors duration-500 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-[#54BD95] after:scale-x-0 after:origin-center hover:after:scale-x-100 after:transition-transform after:duration-500 after:ease-out",
+                        textColor
+                      )}
                     >
                       <Link href={`${menu.href}`}>{menu.item}</Link>
                     </li>
@@ -59,11 +79,10 @@ const Header = () => {
                 ) : !user ? (
                   <div className="flex items-center gap-5 animate-in fade-in duration-500">
                     <button
-                      className="text-[18px] font-medium relative pb-1 hover:text-[#54BD95] transition-colors duration-500
-                             after:content-[''] after:absolute after:left-0 after:bottom-0 
-                             after:h-0.5 after:w-full after:bg-[#54BD95] 
-                             after:scale-x-0 after:origin-center 
-                             hover:after:scale-x-100 after:transition-transform after:duration-500 after:ease-out"
+                      className={cn(
+                        "text-[18px] font-medium relative pb-1 hover:text-[#54BD95] transition-colors duration-500 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-[#54BD95] after:scale-x-0 after:origin-center hover:after:scale-x-100 after:transition-transform after:duration-500 after:ease-out",
+                        textColor
+                      )}
                       onClick={() => setIsLoginOpen(true)}
                     >
                       Login
@@ -79,12 +98,15 @@ const Header = () => {
                       className="flex items-center gap-2 text-[18px] font-medium hover:text-[#54BD95] transition-all duration-300 group"
                     >
                       <div className="p-2 rounded-full bg-white/5 group-hover:bg-[#54BD95]/10 transition-colors">
-                        <UserSvg className="size-6" />
+                        <UserSvg className={(cn("size-6 "), textColor)} />
                       </div>
                     </Link>
                     <button
                       onClick={logout}
-                      className="text-[18px] font-medium  hover:text-red-400 transition-colors duration-300"
+                      className={cn(
+                        "text-[18px] font-medium  hover:text-red-400 transition-colors duration-300",
+                        textColor
+                      )}
                     >
                       Logout
                     </button>
